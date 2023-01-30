@@ -3,7 +3,18 @@
 library(data.table)
 library(dplyr)
 
+filename <- "Coursera_DS3_Final.zip"
 
+# Checking if archieve already exists.
+if (!file.exists(filename)){
+  fileURL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+  download.file(fileURL, filename, method="curl")
+}  
+
+# Checking if folder exists
+if (!file.exists("UCI HAR Dataset")) { 
+  unzip(filename) 
+}
 
 ## Get the supporting metadata into data frames:
 featurenames <- read.table("UCI HAR Dataset/features.txt")
@@ -81,6 +92,4 @@ FinalData <- FinalData[order(FinalData$Subject,FinalData$Activity),]
 ## Write final data as a txt file: 
 write.table(FinalData, "FinalData.txt", row.name=FALSE)
 
-install.packages("dataMaid")
-library(dataMaid)
-makeCodebook(FinalData, replace = TRUE)
+
