@@ -3,9 +3,9 @@
 library(data.table)
 library(dplyr)
 
-filename <- "Coursera_DS3_Final.zip"
+filename <- "DS_assignment.zip"
 
-# Checking if archieve already exists.
+# Checking if archive already exists.
 if (!file.exists(filename)){
   fileURL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
   download.file(fileURL, filename, method="curl")
@@ -92,4 +92,6 @@ FinalData <- FinalData[order(FinalData$Subject,FinalData$Activity),]
 ## Write final data as a txt file: 
 write.table(FinalData, "FinalData.txt", row.name=FALSE)
 
+#Print the final data set:
+FinalData
 
